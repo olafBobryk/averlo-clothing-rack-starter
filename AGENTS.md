@@ -33,8 +33,8 @@ Keep it simple and local. Ask before anything that costs money, uses credits, or
    just above where the collar meets the shoulders down to just below the hem, and across the shoulders plus a hair
    either side (sleeves excluded). A tee's panel is 0.67 times as wide as it is tall, so when the hem is out of the
    photo, take the height as width / 0.67.
-2. Run `python3 scripts/cut-print.py PHOTO public/prints/<shirt-name>-front.png --torso X0 Y0 X1 Y1 --panel L T W H`
-   for each photo (needs numpy, pillow, scipy). `--torso` is a pixel box over the body below the collar and hanger;
+2. Run `mkdir -p public/prints`, then `python3 scripts/cut-print.py PHOTO public/prints/<shirt-name>-front.png --torso X0 Y0 X1 Y1 --panel L T W H`
+   for each photo (needs numpy, pillow, scipy). `--torso` is a pixel box over the body below the collar and hanger (read both boxes off the photo by eye; print its size first, rough boxes work);
    `--panel` is the panel above in photo pixels. It prints the fabric hex and the print's `[x, y, width, height]`
    fractions of the panel. Cut the back photo as it is, without mirroring it.
 3. Look at each PNG on a dark background. Background or shirt edge showing: raise `--edge`. Bits of print missing
@@ -44,7 +44,7 @@ Keep it simple and local. Ask before anything that costs money, uses credits, or
 
 ## 4. Fill rack.json
 
-Copy [rack-starter.json](rack-starter.json) to `rack.json` and add one entry per shirt: `name`, `kind` (`tee`),
+Copy [rack-starter.json](rack-starter.json) to `rack.json` in the project root (the page imports it as `@/rack.json`) and add one entry per shirt: `name`, `kind` (`tee`),
 `colour` (the fabric hex the script printed for the front photo), `prints.front` / `prints.back` (`[file, x, y, width, height]`, fractions
 of the panel from its top left, so `0.2, 0.25, 0.6, 0.3` is a centred chest print), and three `swatches`
 (`[name, fabric hex, label text hex]`).
@@ -105,7 +105,7 @@ A client component reads `rack.json`. For each print it draws the cut-out PNG on
 and `1536 / panelAspect(kind)` tall, at its fractions, and passes the data URL as `image` / `backImage`. Build
 all items before the first render: a changed `items` rebuilds the scene. Render `<ClothesRack items detail controlRef
 renderDetail />` full screen. `renderDetail` returns a `.rack-tags` group (one `.rack-tag` button per swatch:
-`--tag` = fabric, `--index` = position, label colour on its `span`, `aria-pressed` on the picked one, click calls
+`--tag` = fabric, `--index` = position, the label colour as `color` on both the `.rack-tag` button and its `span` (the picked underline takes the button's colour), `aria-pressed` on the picked one, click calls
 `setColour`). It also returns a `.rack-detail-info` block holding an `h3` name and a `.rack-sides` pair of FRONT / BACK
 buttons (`aria-pressed`, click calls `flip`). Reset the side to front when the index changes.
 
