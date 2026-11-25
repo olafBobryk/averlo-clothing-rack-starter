@@ -10,3 +10,9 @@ shirts/**/*.jpeg
 shirts/**/*.png
 shirts/**/*.heic
 shirts/**/*.webp
+
+# DiMaac's Clothes Rack, installed from its registry: never commit its source here
+components/dimaac/
+# Next.js build output
+next-env.d.ts
+*.tsbuildinfo

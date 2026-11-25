@@ -1,5 +1,6 @@
 {
   "title": "My collection",
+  "panel": "Print fractions are [file, x, y, width, height] of the shirt panel, from its top left: the flat body piece from just above where the collar meets the shoulders to just below the hem, across the shoulders plus a hair either side, sleeves excluded. Same box front and back; a tee's panel is 0.67 times as wide as it is tall.",
   "shirts": [
     {
       "name": "My First Tee",

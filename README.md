@@ -16,6 +16,7 @@ Clone https://github.com/olafBobryk/averlo-clothing-rack-starter and follow its 
 - [AGENTS.md](AGENTS.md): the setup steps your agent follows.
 - [rack-starter.json](rack-starter.json): one example shirt to copy (names, prints, colours).
 - [rack-ui.css](rack-ui.css): the front/back toggle and colour tags.
+- [scripts/cut-print.py](scripts/cut-print.py): cuts a print out of a shirt photo, locally and free.
 - [shirts/](shirts/README.md): where your photos go.
 
 ## Credits
