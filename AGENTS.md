@@ -15,8 +15,8 @@ Keep it simple and local. Ask before anything that costs money, uses credits, or
 
 1. This folder isn't empty, so `create-next-app` refuses it. Scaffold in a sibling folder:
    `npx create-next-app@latest ../rack-tmp --ts --app --tailwind --eslint --no-src-dir --use-npm --yes`. Move
-   everything except `.git`, `AGENTS.md`, `CLAUDE.md` and `README.md` into this folder, append its `.gitignore` to
-   ours, then delete `../rack-tmp`. In `next.config.ts` set `agentRules: false`, or `next dev` rewrites this file.
+   everything except `.git`, `.next`, `.gitignore`, `AGENTS.md`, `CLAUDE.md` and `README.md` into this folder, append its
+   `.gitignore` to ours, then delete `../rack-tmp`. In `next.config.ts` set `agentRules: false`, or `next dev` rewrites this file.
 2. `npx shadcn@latest init --defaults`, then install the free Clothes Rack component from DiMaac UI:
    `npx shadcn@latest add @dimaac/clothes-rack` (fallback: `npx shadcn@latest add https://ui.dimaac.com/r/clothes-rack.json`).
    It adds `components/dimaac/` and `three`; add the types yourself: `npm i -D @types/three`.
@@ -24,6 +24,8 @@ Keep it simple and local. Ask before anything that costs money, uses credits, or
    here or to any public repo, and never paste its source anywhere else.
 3. Keep the page light: put `data-theme="light"` on `<html>` (the rack follows the page theme) and a white body.
    Import [rack-ui.css](rack-ui.css) in `app/layout.tsx`.
+4. Tailwind skips gitignored files, so add `@source "../components/dimaac";` on the line after
+   `@import "tailwindcss";` in `app/globals.css`, or the rack renders unstyled.
 
 ## 3. Cut the prints out (free, local)
 
@@ -43,7 +45,7 @@ Keep it simple and local. Ask before anything that costs money, uses credits, or
 ## 4. Fill rack.json
 
 Copy [rack-starter.json](rack-starter.json) to `rack.json` and add one entry per shirt: `name`, `kind` (`tee`),
-`colour` (the fabric hex the script printed), `prints.front` / `prints.back` (`[file, x, y, width, height]`, fractions
+`colour` (the fabric hex the script printed for the front photo), `prints.front` / `prints.back` (`[file, x, y, width, height]`, fractions
 of the panel from its top left, so `0.2, 0.25, 0.6, 0.3` is a centred chest print), and three `swatches`
 (`[name, fabric hex, label text hex]`).
 
@@ -89,7 +91,7 @@ In `components/dimaac/clothes-rack.tsx`:
    at once. Pass `onLoad` to both: the rail's sets `rackDirty` and calls `wake`; the detail's calls `wake`.
 8. Flip: give each `Shown` `flip`, `flipVelocity`, `flipGoal`, `lastFlipVelocity` (all 0) and its item `index`.
    `poseShown` adds `flip` to the turn's rotation. `stepStage` springs `flip` toward `flipGoal` with the same
-   `spring` helper (time constant 0.6 s, 0.12 with reduced motion), counts it in its settled check, and adds the flip's
+   `spring` helper (omega `4.6 / 0.6`, `4.6 / 0.12` with reduced motion), counts it in its settled check, and adds the flip's
    change in velocity to the cloth's turn input, so the hem swings.
 9. Where `engineRef.current` is set, fill `controlRef.current`. `flip` sets `flipGoal` (PI for back, 0 for front)
    on every shown garment that isn't leaving, then calls `wake`. `setColour` sets that index's dye goal, then calls
