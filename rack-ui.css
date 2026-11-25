@@ -1,0 +1,18 @@
+.rack-detail-info{position:absolute;inset:auto 0 5%;display:grid;justify-items:center;gap:clamp(10px,2vh,20px);color:#101010}
+.rack-detail-info h3{font:900 clamp(21px,3.4vh,40px)/1.05 Arial,sans-serif;text-transform:uppercase;text-align:center;letter-spacing:-.035em;margin:0}
+.rack-sides{display:flex;border:1px solid;border-radius:100px;padding:3px}
+.rack-sides button,.rack-stock{font:700 11px/1.25 Arial,sans-serif;letter-spacing:.10em;text-transform:uppercase;cursor:pointer}
+.rack-sides button{padding:8px 18px;border-radius:100px;color:#131313}
+.rack-sides [aria-pressed=true]{background:#141414;color:white}
+.rack-stock{border-bottom:1px solid;padding:4px 1px}
+.rack-stock-note{position:absolute;bottom:30px;background:white;border:1px solid #bbb;padding:8px;font:12px Arial,sans-serif}
+.rack-tags{position:absolute;left:min(calc(50% + var(--half) + 8px),calc(100% - 145px));top:11%;display:flex;gap:5px;align-items:flex-start}
+.rack-tag{--w:clamp(32px,4.8vh,46px);position:relative;width:var(--w);height:calc(var(--w)*2.34);margin-top:calc(28px + var(--index)*22px);cursor:pointer;filter:drop-shadow(1px 4px 3px #0002);transition:transform .18s}
+.rack-tag::before{content:'';position:absolute;width:1px;height:clamp(28px,5vh,50px);bottom:calc(100% - 7px);left:50%;background:#535353}
+.rack-tag span{display:flex;align-items:flex-end;justify-content:center;position:absolute;inset:0;padding-right:3px;writing-mode:vertical-rl;text-transform:uppercase;font:800 10px/1 Arial,sans-serif;letter-spacing:.13em;color:#181818;background:radial-gradient(circle at 50% 9px,#f5f4ef 2px,transparent 3px),var(--tag);clip-path:polygon(20% 0,80% 0,100% 10%,100% 100%,0 100%,0 10%)}
+.rack-tag:first-child span{color:white}
+.rack-tag[aria-pressed=true]::after{content:'';position:absolute;inset:auto 5px 6px;height:3px;background:currentColor}
+.rack-tag:first-child{color:white}
+.rack-tag:hover{transform:rotate(3deg);transform-origin:50% 0}
+.rack-detail-info button:focus-visible{outline:2px solid #3571e2;outline-offset:1px}
+@media(max-width:650px){.rack-tags{right:8px;left:auto;gap:3px;top:10%}.rack-tag{--w:25px}.rack-tag span{font-size:8px}.rack-detail-info{bottom:6%}}

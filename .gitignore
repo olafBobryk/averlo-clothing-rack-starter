@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.vercel/
+.env
+.env.*
+.DS_Store
+*.log
+shirts/**/*.jpg
+shirts/**/*.jpeg
+shirts/**/*.png
+shirts/**/*.heic
+shirts/**/*.webp

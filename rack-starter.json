@@ -1,0 +1,23 @@
+{
+  "title": "My collection",
+  "shirts": [
+    {
+      "name": "My First Tee",
+      "kind": "tee",
+      "colour": "#565d72",
+      "photos": {
+        "front": "shirts/my-first-tee/front.jpg",
+        "back": "shirts/my-first-tee/back.jpg"
+      },
+      "prints": {
+        "front": ["prints/my-first-tee-front.png", 0.21, 0.26, 0.59, 0.11],
+        "back": ["prints/my-first-tee-back.png", 0.03, 0.22, 0.89, 0.7]
+      },
+      "swatches": [
+        ["Marine", "#233b57", "#ffffff"],
+        ["Pine", "#1e5349", "#ffffff"],
+        ["Graphite", "#474751", "#ffffff"]
+      ]
+    }
+  ]
+}
